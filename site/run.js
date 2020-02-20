@@ -11,7 +11,7 @@ new WebpackDevServer(
       "webpack-dev-server/client?http://localhost:3000",
       "webpack/hot/only-dev-server",
       "react-hot-loader/patch",
-      "./index"
+      "./index.txs"
     ],
     output: {
       path: path.join(__dirname, "dist"),
@@ -19,10 +19,20 @@ new WebpackDevServer(
     },
     plugins: [new webpack.HotModuleReplacementPlugin()],
     resolve: {
-      extensions: [".js", ".jsx",'.tsx']
+      extensions: ['.ts', '.tsx', '.js', 'jsx']
     },
     module: {
       rules: [
+        {
+          test: /\.(j|t)sx?$/,
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-typescript"],
+            plugins: [
+              ["@babel/plugin-transform-typescript", { allowNamespaces: true }]
+            ]
+          }
+        },
         {
           test: /\.jsx?$/,
           loader: "babel-loader",

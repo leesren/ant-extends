@@ -1,0 +1,16 @@
+{
+  "include": ["src/**/*","libs/**/*"],
+  "exclude": ["node_modules/**"],
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "lib": ["dom", "es2017", "es2018.promise"],
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "allowJs": true,
+    "jsx": "react",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "sourceMap": true
+  }
+}

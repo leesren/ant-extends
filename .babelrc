@@ -1,19 +1,19 @@
 {
   "env": {
     "development": {
-      "presets" : ["env", "stage-1", "react"],
-      "plugins" : ["react-hot-loader/babel", ["transform-runtime", { "polyfill": false }],["import", {
+      "presets" : ["@babel/preset-env", "@babel/preset-react","@babel/preset-typescript"],
+      "plugins" : ["react-hot-loader/babel", ["@babel/plugin-transform-runtime"],["import", {
         "libraryName": "antd",
         "libraryDirectory": "es",
         "style": true 
       }]]
     },
     "test": {
-      "presets" : ["env", "stage-1", "react"]
+      "presets" : ["@babel/preset-env", "@babel/preset-react"]
     },
     "production": {
-      "presets" : [["env", { "modules": false, "loose": true }], "stage-1", "react"],
-      "plugins" : [["transform-runtime", { "polyfill": false }]]
+      "presets" : [["@babel/preset-env"],   "@babel/preset-react"],
+      "plugins" : [["@babel/plugin-transform-runtime" ]]
     }
   }
 }
