@@ -3,42 +3,45 @@
 const path = require("path");
 const webpack = require("webpack");
 const WebpackDevServer = require("webpack-dev-server");
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-  const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-  
 new WebpackDevServer(
   webpack({
     devtool: "#cheap-eval-source-map",
-    entry: {
-      index: "./App.tsx"
-    },
+    entry: [
+      "webpack-dev-server/client?http://localhost:3000",
+      "webpack/hot/only-dev-server",
+      "react-hot-loader/patch",
+      "./index.txs"
+    ],
     output: {
       path: path.join(__dirname, "dist"),
       filename: "bundle.js"
     },
-    plugins: [ 
-      new CleanWebpackPlugin(),
-      new HtmlWebpackPlugin({
-        title: 'Output Management',
-      }),
-    ],
+    plugins: [new webpack.HotModuleReplacementPlugin()],
     resolve: {
       extensions: ['.ts', '.tsx', '.js', 'jsx']
     },
     module: {
       rules: [
         {
-          test: /\.js$/,
-          exclude: /(node_modules)/,
-          use: {
-            loader: "babel-loader"
+          test: /\.(j|t)sx?$/,
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-typescript"],
+            plugins: [
+              ["@babel/plugin-transform-typescript", { allowNamespaces: true }]
+            ]
           }
         },
         {
-          test: /\.tsx?$/,
-          use: "ts-loader",
-          exclude: /node_modules/
+          test: /\.jsx?$/,
+          loader: "babel-loader",
+          include: [
+            path.join(__dirname, "../site"),
+            path.join(__dirname, "../src"),
+            path.join(__dirname, "../libs")
+          ]
+          // exclude:'node_modules'
         },
         {
           test: /\.css$/,

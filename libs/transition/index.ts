@@ -1,7 +1,6 @@
 /* eslint-disable */
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
+import ReactDOM from 'react-dom'; 
 import requestAnimationFrame from 'raf';
 
 /**
@@ -121,7 +120,7 @@ export default class Transition extends Component<any,any> {
 
     const { onAfterEnter } = this.props;
     const { enterActive, enterTo } = this.transitionClass;
-
+    // @ts-ignore
     childDOM.classList.remove(enterActive, enterTo);
 
     childDOM.removeEventListener('transitionend', this.didEnter);
@@ -131,7 +130,7 @@ export default class Transition extends Component<any,any> {
   }
 
   didLeave(e) {
-    const childDOM = ReactDOM.findDOMNode(this.el);
+    const childDOM:any = ReactDOM.findDOMNode(this.el);
     if (!e || e.target !== childDOM) return;
 
     const { onAfterLeave, children } = this.props;
@@ -143,6 +142,7 @@ export default class Transition extends Component<any,any> {
         childDOM.removeEventListener('animationend', this.didLeave);
 
         requestAnimationFrame(() => {
+
           childDOM.style.display = 'none';
           childDOM.classList.remove(leaveActive, leaveTo);
 
@@ -159,7 +159,7 @@ export default class Transition extends Component<any,any> {
   toggleVisible() {
     const { onEnter } = this.props;
     const { enter, enterActive, enterTo, leaveActive, leaveTo } = this.transitionClass;
-    const childDOM = ReactDOM.findDOMNode(this.el);
+    const childDOM:any = ReactDOM.findDOMNode(this.el);
 
     childDOM.addEventListener('transitionend', this.didEnter);
     childDOM.addEventListener('animationend', this.didEnter);
@@ -190,7 +190,7 @@ export default class Transition extends Component<any,any> {
   toggleHidden() {
     const { onLeave } = this.props;
     const { leave, leaveActive, leaveTo, enterActive, enterTo } = this.transitionClass;
-    const childDOM = ReactDOM.findDOMNode(this.el);
+    const childDOM:any = ReactDOM.findDOMNode(this.el);
 
     childDOM.addEventListener('transitionend', this.didLeave);
     childDOM.addEventListener('animationend', this.didLeave);

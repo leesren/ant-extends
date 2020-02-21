@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import classnames from 'classnames';
 
 export default class Component extends React.Component<any, any> {

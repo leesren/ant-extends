@@ -1,7 +1,7 @@
 /* @flow */
 
-import React from 'react';
-import { Component, PropTypes, CollapseTransition } from '../../libs';
+import * as React from 'react';
+import { Component,  CollapseTransition } from '../../libs';
 
 export default class CollapseItem extends Component {
   constructor(props: Object) {
@@ -34,9 +34,9 @@ export default class CollapseItem extends Component {
   }
 }
 
-CollapseItem.propTypes = {
-  onClick: PropTypes.func,
-  isActive: PropTypes.bool,
-  title: PropTypes.node,
-  name: PropTypes.string
-};
+// CollapseItem.propTypes = {
+//   onClick: PropTypes.func,
+//   isActive: PropTypes.bool,
+//   title: PropTypes.node,
+//   name: PropTypes.string
+// };

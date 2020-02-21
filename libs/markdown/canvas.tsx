@@ -1,20 +1,18 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import PropTypes from 'prop-types'
-import marked from 'marked'
+import * as React from 'react'
+import * as ReactDOM from 'react-dom' 
+import * as marked from 'marked'
 import { transform } from '@babel/standalone'
 import Editor from '../editor'
 
 export default class Canvas extends React.Component<any,any> {
   playerId: string
   document: any
-  description: any
-  source: any
-  static propTypes: { locale: PropTypes.Requireable<object> }
+  description: any 
   static defaultProps: { locale: {} }
   state = {
     showBlock: false
   }
+  source: any 
   constructor(props) {
     super(props)
 
@@ -136,11 +134,4 @@ export default class Canvas extends React.Component<any,any> {
     )
   }
 }
-
-Canvas.propTypes = {
-  locale: PropTypes.object
-}
-
-Canvas.defaultProps = {
-  locale: {}
-}
+ 

@@ -4,7 +4,7 @@ import { View } from '../';
 
 const noneFun = () => undefined;
 
-class Transition extends Component {
+class Transition extends Component<any,any> {
 
   render() {
     const {

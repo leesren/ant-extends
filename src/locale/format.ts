@@ -20,6 +20,7 @@ export default function(string, ...args) {
   }
 
   if (!args || !args.hasOwnProperty) {
+    // @ts-ignore
     args = {};
   }
 

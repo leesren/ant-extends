@@ -1,8 +1,7 @@
-import React from "react";
+import React, { Component } from 'react';
 import { Radio } from "antd";
-import { Component } from "../../libs";
-import  './index.less';
-export default class RadioResearch extends Component {
+import './index.less';
+export default class RadioResearch extends Component<any, any> {
   render() {
     const { list, onChange, title, value } = this.props;
     const radioStyle = {
@@ -10,7 +9,7 @@ export default class RadioResearch extends Component {
       height: "30px"
     };
     return (
-      <div style={this.style()}>
+      <div  >
         {!!title && <div className="ant-radio-research">{title}</div>}
         <Radio.Group onChange={onChange} value={value}>
           {list.map((el, index) => {

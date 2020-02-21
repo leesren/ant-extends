@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React  from 'react';
 import ScrollToTop from 'react-scroll-up';
 import classnames from 'classnames';
 
@@ -10,7 +10,8 @@ import zh from '../src/locale/lang/zh-CN';
 import locales from './locales';
 import pages from './pages';
 
-export default class App extends React.Component {
+export default class App extends React.Component<any, any> {
+  components: any;
   constructor(props) {
     super(props);
 
@@ -35,7 +36,7 @@ export default class App extends React.Component {
 
   componentDidUpdate(props, state) {
     if (state.locale != this.state.locale) {
-      switch(this.state.locale) {
+      switch (this.state.locale) {
         case 'en-US':
           i18n.use(en); break;
         default:
@@ -78,7 +79,7 @@ export default class App extends React.Component {
     return 'quick-start';
   }
 
-  setPage(fn) {
+  setPage(fn?) {
     this.setState({ page: this.getPage() }, fn);
   }
 
@@ -118,9 +119,9 @@ export default class App extends React.Component {
                 <a href={`http://element.eleme.io/#/${this.state.locale}/resource`} target="_blank" rel="noopener noreferrer">{this.getLocale('misc.resource')}</a>
               </li>
               <li className="nav-item">
-                <span className={classnames('nav-lang', { active: this.state.locale === 'zh-CN'})} onClick={this.setLocale.bind(this, 'zh-CN')}>中文</span>
+                <span className={classnames('nav-lang', { active: this.state.locale === 'zh-CN' })} onClick={this.setLocale.bind(this, 'zh-CN')}>中文</span>
                 <span> / </span>
-                <span className={classnames('nav-lang', { active: this.state.locale === 'en-US'})} onClick={this.setLocale.bind(this, 'en-US')}>En</span>
+                <span className={classnames('nav-lang', { active: this.state.locale === 'en-US' })} onClick={this.setLocale.bind(this, 'en-US')}>En</span>
               </li>
             </ul>
           </div>
@@ -168,7 +169,7 @@ export default class App extends React.Component {
             </ul>
           </nav>
           <div className="content">
-            { this.getComponent(this.state.page) }
+            {this.getComponent(this.state.page)}
             <ScrollToTop showUnder={210}>
               <div className="page-component-up">
                 <i className="el-icon-caret-top"></i>

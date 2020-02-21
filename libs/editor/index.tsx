@@ -1,6 +1,5 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import CodeMirror from 'codemirror'
+import * as React from 'react' 
+import * as CodeMirror from 'codemirror'
 
 import 'codemirror/mode/jsx/jsx'
 import 'codemirror/keymap/sublime'
@@ -9,7 +8,7 @@ import 'codemirror/addon/comment/comment'
 import 'codemirror/lib/codemirror.css'
 import './style.scss'
 
-export default class Editor extends Component<any, {
+export default class Editor extends React.Component<any, {
   onChange: (value: any) => void,
   value: string
 }> {

@@ -1,7 +1,8 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import marked from "marked";
-import prism from "prismjs";
+import * as  React from "react";
+import * as ReactDOM from "react-dom";
+// @ts-ignore
+import * as marked from "marked";
+import *  as prism from "prismjs";
 
 import Canvas from "./canvas";
 
