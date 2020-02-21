@@ -8,7 +8,7 @@
     "moduleResolution": "node",
     "allowJs": true,
     "noImplicitAny": false,
-    "module": "UMD",
+    "module": "commonjs",
     "jsx": "react",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,

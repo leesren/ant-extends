@@ -23,6 +23,7 @@ module.exports = {
     // }),
   ],
   module: {
+    unknownContextCritical : false,
     rules: [ 
       {
         test: /\.(ts|tsx)$/,

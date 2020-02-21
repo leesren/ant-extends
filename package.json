@@ -1,6 +1,6 @@
 {
   "name": "ant-extends",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "antd extends UI",
   "private": false,
   "main": "dist/npm/es5/index.js",

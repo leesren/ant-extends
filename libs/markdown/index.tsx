@@ -44,7 +44,9 @@ export default class Markdown extends React.Component {
     const document = this.document(
       localStorage.getItem("ELEMENT_LANGUAGE") || "zh-CN"
     );
-
+    
+    // 子标题
+    // document.match(/###\s?(.*)/g)
     if (typeof document === "string") {
       this.components.clear();
 

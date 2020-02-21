@@ -2,9 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import 'core-js';
-
-import 'element-theme-default';
-
+import 'antd/dist/antd.css';
 import './styles/base.scss';
 import './styles/prism.css';
 
