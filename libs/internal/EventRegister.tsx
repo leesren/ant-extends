@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types'; 
+import React from 'react'; 
 import { require_condition } from '../utils';
 
 let windowKey = Symbol.for("er_register_map")

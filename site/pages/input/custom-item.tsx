@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'; 
 
 class CustomItem extends React.Component<any,any> {
   render() {
