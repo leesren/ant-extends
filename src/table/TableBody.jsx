@@ -5,7 +5,6 @@ import { getRowIdentity, getValueByPath } from "./utils";
 // import {toDate} from "../date-picker/utils/index";
 
 import Checkbox from '../checkbox';
-import Tag from '../tag';
 
 import type {_Column, TableBodyProps} from "./Types";
 

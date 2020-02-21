@@ -2,8 +2,7 @@
 import * as React from 'react';
 import { Component, PropTypes } from '../../libs';
 import { getValueByPath } from "./utils";
-import Checkbox from '../checkbox';
-import Tag from '../tag';
+import Checkbox from '../checkbox'; 
 
 import type { TableFooterProps, _Column } from "./Types";
 
