@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { Radio } from "antd";
 import './index.less';
-export default class RadioResearch extends Component<any, any> {
+export default class RadioResearch extends React.Component<any, any> {
   render() {
     const { list, onChange, title, value } = this.props;
     const radioStyle = {

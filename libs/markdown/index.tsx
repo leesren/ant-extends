@@ -5,6 +5,7 @@ import * as marked from "marked";
 import *  as prism from "prismjs";
 
 import Canvas from "./canvas";
+import 'prismjs/themes/prism-okaidia.css';
 
 export default class Markdown extends React.Component {
   components: Map<any, any>;

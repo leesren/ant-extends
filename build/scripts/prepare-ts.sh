@@ -10,6 +10,7 @@ if [ $? = 0 ]; then
   # babel transform es6 into es5
   tsc -p tsconfig.prod.json
   babel build/npm/index.js --out-file dist/npm/es5/index.js
+  node build/npm/genStyle.js
 
 #   export BABEL_ENV=production
 

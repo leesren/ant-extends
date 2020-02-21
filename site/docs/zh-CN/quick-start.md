@@ -1,28 +1,90 @@
 ## 快速上手
 
 ### 安装
-推荐使用 npm 的方式安装，它能更好地和`webpack`打包工具配合使用。
 
 ```shell
-npm i element-react --save
+npm i ant-extends --save
 ```
 
-### 主题
-开始前, 你还需要一个主题包, 这里我们推荐使用`element-theme-default`.
+### 按需加载
+
+结合 `babel-plugin-import`, 可以按需加载组件，减小包的大小
 
 ```shell
-npm install element-theme-default --save
+npm install babel-plugin-import -D
+```
+
+配置 `babel`,
+
+下面是 `umi` 的例子
+
+```jsx
+export default {
+  // 其他配置
+  extraBabelPlugins: [
+    [
+      "import",
+      {
+        libraryName: "ant-extends",
+        libraryDirectory: "dist/npm/es5/src",
+        style: "index.less"
+      },
+      "ant-extends"
+    ]
+  ]
+};
 ```
 
 ### 使用
 
 ```js
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Button } from 'element-react';
+import React from "react";
+import { RadioResearch } from "ant-extends";
+class Page extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: ""
+    };
+  }
+  onChange(e) {
+    this.setState({ value: e.target.value });
+  }
+  render() {
+    const list = [
+      {
+        label: "1年以内",
+        value: "0"
+      },
+      {
+        label: "1~3年",
+        value: "1"
+      },
+      {
+        label: "3~5年",
+        value: "2"
+      },
+      {
+        label: "5年以上",
+        value: "3"
+      }
+    ];
+    return (
+      <div className="page-result">
+        <div className="result-box">
+          <div>
+            <RadioResearch
+              onChange={this.onChange.bind(this)}
+              value={this.state.value}
+              title="你参与基金投资已经多久了？"
+              list={list}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
 
-import 'element-theme-default';
-
-ReactDOM.render(<Button type="primary">Hello</Button>, document.getElementById('app'));
-
+export default Page;
 ```
