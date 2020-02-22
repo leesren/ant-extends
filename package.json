@@ -1,6 +1,6 @@
 {
   "name": "ant-extends",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "antd extends UI",
   "private": false,
   "main": "dist/npm/es5/index.js",
@@ -16,7 +16,7 @@
     "prepubl¡sh": "./build/scripts/prepare-ts.sh && npm run genStyle",
     "genStyle": "babel src/**/*.less --out-dir dist/npm/es5/src/* --copy-files",
     "prepubl¡sh:babel": "./build/scripts/prepare.sh",
-    "build":"npm run prepubl¡sh && npm run build:site",
+    "build": "npm run prepubl¡sh && npm run build:site",
     "postpublish": "./build/scripts/release.sh"
   },
   "repository": {
