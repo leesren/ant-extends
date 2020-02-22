@@ -16,6 +16,7 @@
     "prepubl¡sh": "./build/scripts/prepare-ts.sh && npm run genStyle",
     "genStyle": "babel src/**/*.less --out-dir dist/npm/es5/src/* --copy-files",
     "prepubl¡sh:babel": "./build/scripts/prepare.sh",
+    "build":"npm run prepubl¡sh && npm run build:site",
     "postpublish": "./build/scripts/release.sh"
   },
   "repository": {
