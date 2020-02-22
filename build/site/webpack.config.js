@@ -2,10 +2,11 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const basePath = path.resolve(__dirname, "../../");
 
 module.exports = {
+  mode: "production",
   entry: {
     site: path.join(basePath, "site")
   },
@@ -24,34 +25,26 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./index.html",
       favicon: path.join(basePath, "site/assets/favicon.ico")
-    })
-  ].concat(
-    process.env.TRAVIS_CI
-      ? []
-      : [
-          new webpack.DefinePlugin({
-            "process.env.NODE_ENV": JSON.stringify("production")
-          }),
-          new webpack.optimize.ModuleConcatenationPlugin()
-        ]
-  ),
+    }),
+    new webpack.DefinePlugin({
+      "process.env.NODE_ENV": JSON.stringify("production")
+    }),
+    new webpack.optimize.ModuleConcatenationPlugin()
+  ],
   resolve: {
-    extensions: [".js", ".jsx"]
+    extensions: [".ts", ".js", ".tsx"]
   },
   module: {
-    rules: [
+    unknownContextCritical : false,
+    rules: [ 
       {
-        test: /\.jsx?$/,
-        loader: "babel-loader",
-        include: [
-          path.join(basePath, "site"),
-          path.join(basePath, "src"),
-          path.join(basePath, "libs")
-        ]
+        test: /\.(ts|tsx)$/,
+        use: "awesome-typescript-loader",
+        exclude: /node_modules/
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"]
+        use: ["style-loader", "css-loader"]
       },
       {
         test: /\.scss$/,
@@ -74,14 +67,13 @@ module.exports = {
           }
         ]
       },
-
       {
-        test: /\.(ttf|eot|svg|woff|woff2)(\?.+)?$/,
-        loader: "file-loader?name=[hash:12].[ext]"
+        test: /\.(eot|svg|ttf|woff|woff2)(\?.+)?$/,
+        loader: "file-loader"
       },
       {
         test: /\.(jpe?g|png|gif)(\?.+)?$/,
-        loader: "url-loader?name=[hash:12].[ext]&limit=25000"
+        loader: "url-loader"
       },
       {
         test: /\.md$/,
@@ -89,5 +81,5 @@ module.exports = {
       }
     ]
   },
-  mode: "production"
+ 
 };

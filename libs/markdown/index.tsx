@@ -6,10 +6,14 @@ import *  as prism from "prismjs";
 
 import Canvas from "./canvas";
 import 'prismjs/themes/prism-okaidia.css';
+import Subtitle from "./Subtitle";
 
 export default class Markdown extends React.Component {
   components: Map<any, any>;
   renderer: any;
+  state = {
+  }
+  markdownDoc: void;
   constructor(props) {
     super(props);
 
@@ -19,10 +23,15 @@ export default class Markdown extends React.Component {
     this.renderer.table = (header, body) => {
       return `<table class="grid"><thead>${header}</thead><tbody>${body}</tbody></table>`;
     };
+    this.markdownDoc = this.document(
+      localStorage.getItem("ELEMENT_LANGUAGE") || "zh-CN"
+    );
+
   }
 
   componentDidMount() {
     this.renderDOM();
+
   }
 
   componentDidUpdate() {
@@ -36,22 +45,22 @@ export default class Markdown extends React.Component {
       if (div instanceof HTMLElement) {
         ReactDOM.render(component, div);
       }
-    }
+    } 
     prism.highlightAll();
   }
+  
 
   render() {
-    const document = this.document(
-      localStorage.getItem("ELEMENT_LANGUAGE") || "zh-CN"
-    );
-    
+    const document = this.markdownDoc;
+
     // 子标题
-    // document.match(/###\s?(.*)/g)
+
     if (typeof document === "string") {
+      // document.match(/###\s?(.*)/g) 
       this.components.clear();
 
       const html = marked(
-        (document+'').replace(/:::\s?demo\s?([^]+?):::/g, (match, p1, offset) => {
+        (document + '').replace(/:::\s?demo\s?([^]+?):::/g, (match, p1, offset) => {
           const id = offset.toString(36);
           const _ref = this.constructor;
           const demoCodeProps = Object.assign(
@@ -71,11 +80,15 @@ export default class Markdown extends React.Component {
       );
 
       return (
-        <div
-          dangerouslySetInnerHTML={{
-            __html: html
-          }}
-        />
+        <div>
+          <div
+            id="mk-content"
+            dangerouslySetInnerHTML={{
+              __html: html
+            }}
+          />
+          <Subtitle list={(this.markdownDoc+'').match(/###\s?(.*)/g) || []}/>
+        </div>
       );
     } else {
       return <span />;

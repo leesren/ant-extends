@@ -1,7 +1,7 @@
-import * as React  from 'react';
+import * as React from 'react';
 import ScrollToTop from 'react-scroll-up';
 import classnames from 'classnames';
-
+import { throttle, debounce } from 'throttle-debounce';
 import { i18n } from '../src';
 
 import en from '../src/locale/lang/en';
@@ -12,10 +12,13 @@ import pages from './pages';
 
 export default class App extends React.Component<any, any> {
   components: any;
+  onScroll: (ev: Event) => any;
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      top: 60
+    };
   }
 
   componentWillMount() {
@@ -24,6 +27,15 @@ export default class App extends React.Component<any, any> {
 
       this.setPage();
     }, false);
+    // @ts-ignore
+    this.onScroll = throttle(30, (event) => {
+      const { pageYOffset: offset } = window;
+      this.setState({
+        top: Math.max(0, 60 - offset)
+      });
+    })
+    window.addEventListener('scroll', this.onScroll)
+
   }
 
   componentDidMount() {
@@ -104,30 +116,37 @@ export default class App extends React.Component<any, any> {
     return (
       <div className="app">
         <header className="header">
-          <div className="container">
+          <div className="container header-nav">
             <h1>
-              <img src={require('./assets/logo.svg')} />
+              <img style={{ width: 32 }} src={require('./assets/logo.svg')} />
             </h1>
-            <ul className="nav">
-              <li className="nav-item">
-                <a href={`http://element.eleme.io/#/${this.state.locale}/guide/design`} target="_blank" rel="noopener noreferrer">{this.getLocale('misc.guide')}</a>
-              </li>
-              <li className="nav-item">
-                <a className="active">{this.getLocale('misc.component')}</a>
-              </li>
-              <li className="nav-item">
-                <a href={`http://element.eleme.io/#/${this.state.locale}/resource`} target="_blank" rel="noopener noreferrer">{this.getLocale('misc.resource')}</a>
-              </li>
-              <li className="nav-item">
-                <span className={classnames('nav-lang', { active: this.state.locale === 'zh-CN' })} onClick={this.setLocale.bind(this, 'zh-CN')}>中文</span>
-                <span> / </span>
-                <span className={classnames('nav-lang', { active: this.state.locale === 'en-US' })} onClick={this.setLocale.bind(this, 'en-US')}>En</span>
-              </li>
-            </ul>
+            <div className="nav-content">
+              <div className="search-box">
+                <div className="input-box">
+                  <input placeholder="搜索文档..." className="ant-select-search__field" type="text" />
+                </div>
+              </div>
+              <ul className="nav">
+                <li className="nav-item">
+                  <a href={`/#/zh-CN/quick-start`} rel="noopener noreferrer">{this.getLocale('misc.guide')}</a>
+                </li>
+                <li className="nav-item">
+                  <a className="active">{this.getLocale('misc.component')}</a>
+                </li>
+                <li className="nav-item">
+                  <a href={`https://github.com/leesren/ant-extends/issues`} target="_blank" rel="noopener noreferrer">{this.getLocale('misc.resource')}</a>
+                </li>
+                <li className="nav-item">
+                  <span className={classnames('nav-lang', { active: this.state.locale === 'zh-CN' })} onClick={this.setLocale.bind(this, 'zh-CN')}>中文</span>
+                  <span> / </span>
+                  <span className={classnames('nav-lang', { active: this.state.locale === 'en-US' })} onClick={this.setLocale.bind(this, 'en-US')}>En</span>
+                </li>
+              </ul>
+            </div>
           </div>
         </header>
         <div className="main container">
-          <nav className="side-nav">
+          <nav className="side-nav" style={{ top: this.state.top }}>
             <ul>
               <li className="nav-item">
                 <a>{this.getLocale('misc.development')}</a>
@@ -172,26 +191,13 @@ export default class App extends React.Component<any, any> {
             {this.getComponent(this.state.page)}
             <ScrollToTop showUnder={210}>
               <div className="page-component-up">
-                <i className="el-icon-caret-top"></i>
+                <img src="./assets/scrollTo.png" alt=""/>
               </div>
             </ScrollToTop>
+           
           </div>
         </div>
-        <footer className="footer">
-          <div className="container">
-            <div className="footer-main">
-              <p className="footer-main-title">Element-React</p>
-              <a href="https://github.com/eleme/element-react/issues" target="_blank" rel="noopener noreferrer" className="footer-main-link">{this.getLocale('misc.feedback')}</a>
-              <a href="https://github.com/eleme/element-react/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer" className="footer-main-link">{this.getLocale('misc.contribution')}</a>
-              <a href={`http://element.eleme.io/#/${this.state.locale}/component/${this.state.page}`} target="_blank" rel="noopener noreferrer" className="footer-main-link">Element</a>
-            </div>
-            <div className="footer-social">
-              <a href="//github.com/eleme/element-react" target="_blank" rel="noopener noreferrer">
-                <img src={require('./assets/github.png')} />
-              </a>
-            </div>
-          </div>
-        </footer>
+
       </div>
     )
   }
