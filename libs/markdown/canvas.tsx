@@ -15,12 +15,10 @@ export default class Canvas extends React.Component<any,any> {
   source: any 
   constructor(props) {
     super(props)
-
     this.playerId = `${parseInt(Math.random() * 1e9 + '').toString(36)}`
     this.document = (this.props.children as String).match(/([^]*)\n?(```[^]+```)/)
     this.description = marked(this.document[1])
     this.source = this.document[2].match(/```(.*)\n?([^]+)```/)
-
   }
 
   componentDidMount() {
