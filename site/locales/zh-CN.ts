@@ -20,6 +20,9 @@ module.exports = {
     'collapse': 'Collapse 折叠面板',
     'ai-title': 'ai-title 测试组件',
     'radio-research': 'RadioResearch 单选题',
+    'form-table': 'FormTable 表格搜索',
+    'editor': 'editor 编辑器',
+    'table-info': 'TableInfo 表格展示数据',
   },
   misc: {
     'guide': '指南',

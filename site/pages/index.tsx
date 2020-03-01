@@ -11,8 +11,11 @@ export default {
     },
     'Form': {  
       'radio-research': require('./radio-research'),
+      'form-table': require('./form-table'),
+      'editor': require('./editor'),
     },
     'Data': { 
+      'table-info': require('./table-info')
     },
     'Notice': {  
     },

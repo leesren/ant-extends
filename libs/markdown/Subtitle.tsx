@@ -31,6 +31,7 @@ export default class Subtitle extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
   }
+
   componentDidMount() {
     this.renderSubtitle();
     const updateBall = (activeIndex = 0) => {
@@ -82,6 +83,13 @@ export default class Subtitle extends React.Component<Props, State> {
     // @ts-ignore
     window.addEventListener("scroll", this.onScroll);
     updateBall(0);
+  }
+  componentWillUnmount(){
+    // @ts-ignore
+    this.onScroll && window.removeEventListener('scroll', this.onScroll);
+    this.setState = (state, callback) => {
+      return
+    }
   }
   getActiveAnchorIndex = (scrollTop, rects, subtitles) => {
     for (let i = subtitles.length - 1; i >= 0; i--) {

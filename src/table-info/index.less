@@ -1,0 +1,25 @@
+@import '~antd/lib/style/themes/default.less';
+.ant-table-info {
+    &.border {
+        th,
+        td {
+            border: 1px solid @border-color-base;
+        }
+    }
+    tbody {
+        font-size: @font-size-base;
+        line-height: @line-height-base;
+        th,
+        td {
+            vertical-align: top;
+            padding: @table-padding-vertical * 0.5 @table-padding-horizontal * 0.5;
+        }
+        th {
+            color: @text-color-secondary;
+            font-weight: normal;
+        }
+        td {
+            color: @text-color;
+        }
+    }
+}

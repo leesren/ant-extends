@@ -7,7 +7,7 @@ export default class Icon extends Markdown {
     iconList: require('./iconList')
   }
   document(locale) {
-    return require(`../../docs/${locale}/icon.md`);
+    return require(`./icon.${locale}.md`);
   }
 }
 

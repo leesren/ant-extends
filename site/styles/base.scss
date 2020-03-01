@@ -124,6 +124,9 @@ body {
       position: relative;
       cursor: pointer;
       margin-left: 20px;
+      line-height: 1.45;
+    display: flex;
+    align-items: center;
       a {
         color: #314659;
         &.active {
@@ -137,9 +140,9 @@ body {
 
       .nav-lang {
         cursor: pointer;
-        display: inline-block;
-        height: 100%;
+        display: inline-block; 
         opacity: 0.8;
+        padding: 0 5px;
       }
 
       .nav-lang.active {
